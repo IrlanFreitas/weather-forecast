@@ -1,0 +1,9 @@
+Pegando o clima pelo nome:
+
+    https://openweathermap.org/current#name
+
+* Adicionar o Material UI ?
+* Adicionar testes unitários
+* Usar Hook Customizados
+* Usar context API
+* Usar autocomplete no input
