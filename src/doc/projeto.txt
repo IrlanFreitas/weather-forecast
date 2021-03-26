@@ -4,6 +4,26 @@ Pegando o clima pelo nome:
 
 * Adicionar o Material UI ?
 * Adicionar testes unitários
-* Usar Hook Customizados
-* Usar context API
+* Colocar os loadings
+* Adicionar o Prettier com o AirBnb
+* Adicionar Commitlint e técnicas relácionadas
+* Usar Hook Customizados ?
+* Usar ContextAPI ?
+    Aprender 
+    Usar
 * Usar autocomplete no input
+    Integração
+    Melhorias com o click para colocar o valor no state e no input
+    Referências:
+        https://www.npmjs.com/package/react-places-autocomplete
+        https://material-ui.com/pt/api/autocomplete/#demos
+        https://material-ui.com/pt/components/autocomplete/
+        https://developers.google.com/maps/documentation/javascript/examples#places
+        https://developers.google.com/maps/documentation/places/web-service/autocomplete
+        https://stackoverflow.com/questions/8282026/how-to-limit-google-autocomplete-results-to-city-and-country-only
+        https://developers.google.com/maps/documentation/javascript/reference/places-widget
+        https://developers.google.com/maps/documentation/javascript/reference#places
+* Fazer o input autocomplete na mão ?
+* Organizar os envs.
+* Responsivo.
+* Usar css grids ?

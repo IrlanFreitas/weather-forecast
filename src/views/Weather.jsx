@@ -1,20 +1,24 @@
-import React, { useState, useEffect } from 'react'
-import { weather } from '../services/api'
+import { useState, useEffect } from 'react'
+import FilterCities from '../components/FilterCities';
+import { weather as weatherService } from '../services/api'
 
 export default function Weather() {
 
-    const [data, setData] = useState({})
+    const [weather, setWeather] = useState({})
+    // const [cities, setCities] = useState([])
 
     useEffect(() => {
-        weather('London', setData)
-        
-    }, [setData])
-    
-    console.log(data)
+        weatherService('London', setWeather)
+    }, [setWeather])
+
+    // useEffect(() => {
+    //     citiesService(setCities)
+    // }, [setCities])
+
+    console.log(weather)
+    // console.log(cities)
 
     return (
-        <div>
-            {data.base}
-        </div>
+        <FilterCities />
     )
 }
