@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import FilterCities from '../components/FilterCities';
-import { weather as weatherService } from '../services/api'
+// import { weather as weatherService } from '../services/api'
 
 export default function Weather() {
 
@@ -8,7 +8,7 @@ export default function Weather() {
     // const [cities, setCities] = useState([])
 
     useEffect(() => {
-        weatherService('London', setWeather)
+        // weatherService('San Diego, CA, EUA', setWeather)
     }, [setWeather])
 
     // useEffect(() => {

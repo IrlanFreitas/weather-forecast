@@ -1,15 +1,11 @@
-import React, { useState } from 'react'
-// import { countries } from "../utils/countries";
+import React, { useState, useEffect } from 'react'
 import PlacesAutocomplete, {
     geocodeByAddress,
-    geocodeByPlaceId,
     getLatLng,
 } from 'react-places-autocomplete';
 import { Autocomplete } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-// import { cities } from '../data/city.js'
-// import CityContext from '../context/city.jsx'
 
 const useStyles = makeStyles({
     option: {
@@ -20,94 +16,76 @@ const useStyles = makeStyles({
         },
     },
 });
+
 export default function FilterCities() {
     const classes = useStyles()
     const [address, setAddress] = useState('')
+    const [latLong, setLatLong] = useState({})
+    const [place, setPlace] = useState('')
+
+    useEffect(() => {
+        console.log(latLong)
+    }, [latLong])
 
     const handleSelect = value => {
         geocodeByAddress(value)
             .then(results => getLatLng(results[0]))
-            .then(latLng => console.log('Success', latLng))
+            .then(latLng => setLatLong(latLng))
             .catch(error => console.error('Error', error));
     };
+
+    const onError = (status, clearSuggestions) => {
+        console.log('Google Maps API returned error with status: ', status)
+        clearSuggestions()
+    }
 
     return (
         <>
             <PlacesAutocomplete
-                value={address}
-                onChange={value => setAddress(value)}
+                value={place}
+                onChange={value => setPlace(value)}
                 onSelect={handleSelect}
+                nError={onError}
+                searchOptions={{
+                    types: ['(regions)'],
+
+                }}
             >
                 {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                    <>
-                        {/* <div>
-                            <input
-                                {...getInputProps({
-                                    placeholder: 'Search Places ...',
-                                    className: 'location-search-input',
-                                })}
+                    <Autocomplete
+                        id="country-select-demo"
+                        style={{ width: 300 }}
+                        options={suggestions}
+                        classes={{
+                            option: classes.option,
+                        }}
+                        loading={loading}
+                        loadingText="Pesquisando..."
+                        noOptionsText="Não encontrado"
+                        autoHighlight
+                        getOptionLabel={(option) => option.description || ""}
+                        renderOption={(option) => option?.description}
+                        // value={address}
+                        onChange={(event, value) => {
+                            handleSelect(value.description)
+                            // setAddress(value.description);
+                        }}
+                        inputValue={address}
+                        onInputChange={(event, newInputValue) => {
+                            setAddress(newInputValue);
+                        }}
+                        renderInput={(params) => (
+                            <TextField
+                                {...params}
+                                label="Escolha uma cidade"
+                                variant="outlined"
+                                {...getInputProps()}
                             />
-                            <div className="autocomplete-dropdown-container">
-                                {loading && <div>Loading...</div>}
-                                {suggestions.map(suggestion => {
-                                    const className = suggestion.active
-                                        ? 'suggestion-item--active'
-                                        : 'suggestion-item';
-                                    // inline style for demonstration purpose
-                                    const style = suggestion.active
-                                        ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                                        : { backgroundColor: '#ffffff', cursor: 'pointer' };
-                                    return (
-                                        <div
-                                            {...getSuggestionItemProps(suggestion, {
-                                                className,
-                                                style,
-                                            })}
-                                        >
-                                            <span>{suggestion.description}</span>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        </div> */}
-                        {/* {console.log(...getInputProps())}
-                        {console.log(...getSuggestionItemProps())} */}
+                        )}
+                    />
 
-                        <Autocomplete
-                            id="country-select-demo"
-                            style={{ width: 300 }}
-                            // value={address}
-                            options={suggestions}
-                            clearOnEscape
-                            classes={{
-                                option: classes.option,
-                            }}
-                            loading={loading}
-                            loadingText="Pesquisando..."
-                            noOptionsText="Não encontrado"
-                            autoHighlight
-                            getOptionLabel={(option) => option.description}
-                            renderOption={(option) => option.description}
-                            // onChange={(value) => { console.log(value) }}
-                            openOnFocus
-                            renderInput={(params) => (
-                                <TextField
-                                    {...params}
-                                    label="Escolha uma cidade"
-                                    variant="outlined"
-                                    inputProps={{
-                                        ...params.inputProps,
-                                        autoComplete: 'new-password', // disable autocomplete and autofill
-                                        ...getInputProps()
-                                    }}
-                                />
-                            )}
-                        />
-                    </>
                 )}
             </PlacesAutocomplete>
-
-            {address}
         </>
     )
 }

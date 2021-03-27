@@ -2,7 +2,7 @@ import axios from 'axios'
 // import city from './public/data/city.json';
 
 const api = axios.create({
-    baseURL: 'https://api.openweathermap.org/data/2.5/weather'
+    baseURL: 'https://api.openweathermap.org/data/2.5/onecall'
 })
 
 api.interceptors.request.use(config => {

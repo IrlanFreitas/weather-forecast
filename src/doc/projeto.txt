@@ -1,6 +1,10 @@
-Pegando o clima pelo nome:
+Obtendo o clima 
 
+    pelo nome e tendo o atual:
     https://openweathermap.org/current#name
+
+    pelo lat e long e tendo os dias anteriores:
+    https://openweathermap.org/api/one-call-api#how
 
 * Adicionar o Material UI ?
 * Adicionar testes unitários
