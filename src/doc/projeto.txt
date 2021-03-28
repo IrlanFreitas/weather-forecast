@@ -1,10 +1,16 @@
-Obtendo o clima 
+* Obtendo o clima 
 
     pelo nome e tendo o atual:
     https://openweathermap.org/current#name
 
     pelo lat e long e tendo os dias anteriores:
     https://openweathermap.org/api/one-call-api#how
+
+    Ícones:
+    https://openweathermap.org/weather-conditions#Weather-Condition-Codes-2
+
+    Url do ícone:
+    http://openweathermap.org/img/wn/10d@2x.png
 
 * Adicionar o Material UI ?
 * Adicionar testes unitários
@@ -16,6 +22,7 @@ Obtendo o clima
     Aprender 
     Usar
 * Usar autocomplete no input
+    - [x] Feito com o Autocomplete do Material UI
     Integração
     Melhorias com o click para colocar o valor no state e no input
     Referências:
@@ -27,7 +34,19 @@ Obtendo o clima
         https://stackoverflow.com/questions/8282026/how-to-limit-google-autocomplete-results-to-city-and-country-only
         https://developers.google.com/maps/documentation/javascript/reference/places-widget
         https://developers.google.com/maps/documentation/javascript/reference#places
-* Fazer o input autocomplete na mão ?
+* Fazer o input autocomplete na mão ? - Não
+    
 * Organizar os envs.
 * Responsivo.
+    Melhor forma de fazer responsivo com os breakpoints do bootstrap
 * Usar css grids ?
+* Usar gifs
+* Usar skeleton
+* Internacionalização ?
+* Como usar uma variavel de ambiente no public
+* Adicionar um README legal
+    Procurar modelos de README
+    https://github.com/matiassingers/awesome-readme
+    https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project
+* Ajustar esse documento
+

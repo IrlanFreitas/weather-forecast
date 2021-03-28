@@ -6,6 +6,7 @@ import PlacesAutocomplete, {
 import { Autocomplete } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import { useCity } from '../providers/city';
 
 const useStyles = makeStyles({
     option: {
@@ -20,14 +21,16 @@ const useStyles = makeStyles({
 export default function FilterCities() {
     const classes = useStyles()
     const [address, setAddress] = useState('')
-    const [latLong, setLatLong] = useState({})
+    const [latLong, setLatLong] = useState({ lat: null, lng: null })
     const [place, setPlace] = useState('')
 
-    useEffect(() => {
-        console.log(latLong)
-    }, [latLong])
+    const { setCity } = useCity()
 
-    const handleSelect = value => {
+    useEffect(() => {
+        setCity({ address, ...latLong })
+    }, [latLong, setCity, address])
+
+    const getLatitudeAndLongitude = value => {
         geocodeByAddress(value)
             .then(results => getLatLng(results[0]))
             .then(latLng => setLatLong(latLng))
@@ -44,7 +47,7 @@ export default function FilterCities() {
             <PlacesAutocomplete
                 value={place}
                 onChange={value => setPlace(value)}
-                onSelect={handleSelect}
+                onSelect={getLatitudeAndLongitude}
                 nError={onError}
                 searchOptions={{
                     types: ['(regions)'],
@@ -65,10 +68,14 @@ export default function FilterCities() {
                         autoHighlight
                         getOptionLabel={(option) => option.description || ""}
                         renderOption={(option) => option?.description}
-                        // value={address}
+                        getOptionSelected={(option, value) => {
+                            console.log(value)
+                            getLatitudeAndLongitude(value.description)
+                            
+                            return option.description === value.description
+                        }}
                         onChange={(event, value) => {
-                            handleSelect(value.description)
-                            // setAddress(value.description);
+                            getLatitudeAndLongitude(value?.description)
                         }}
                         inputValue={address}
                         onInputChange={(event, newInputValue) => {

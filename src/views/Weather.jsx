@@ -1,22 +1,23 @@
 import { useState, useEffect } from 'react'
 import FilterCities from '../components/FilterCities';
-// import { weather as weatherService } from '../services/api'
+import { useCity } from '../providers/city';
+
+import { weather as weatherService } from '../services/api'
 
 export default function Weather() {
 
     const [weather, setWeather] = useState({})
-    // const [cities, setCities] = useState([])
+    
+    const { city } = useCity()
 
     useEffect(() => {
-        // weatherService('San Diego, CA, EUA', setWeather)
-    }, [setWeather])
-
-    // useEffect(() => {
-    //     citiesService(setCities)
-    // }, [setCities])
+        if (city.address !== "" && city.lat !== null && city.lat !== "") {
+            weatherService(city, setWeather)
+        }
+    }, [setWeather, city])
 
     console.log(weather)
-    // console.log(cities)
+    // console.log(city)
 
     return (
         <FilterCities />
