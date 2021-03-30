@@ -21,6 +21,7 @@
 * Usar ContextAPI ?
     Aprender 
     Usar
+    https://stackoverflow.com/questions/53346462/react-multiple-contexts/53346541
 * Usar autocomplete no input
     - [x] Feito com o Autocomplete do Material UI
     Integração
@@ -49,4 +50,3 @@
     https://github.com/matiassingers/awesome-readme
     https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project
 * Ajustar esse documento
-
