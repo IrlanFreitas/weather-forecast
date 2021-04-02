@@ -6,7 +6,7 @@ import PlacesAutocomplete, {
 import { Autocomplete } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import { useCity } from '../providers/city';
+import { useIndex } from '../providers';
 
 const useStyles = makeStyles({
     option: {
@@ -24,7 +24,7 @@ export default function FilterCities() {
     const [latLong, setLatLong] = useState({ lat: null, lng: null })
     const [place, setPlace] = useState('')
 
-    const { setCity } = useCity()
+    const { setCity } = useIndex()
 
     useEffect(() => {
         setCity({ address, ...latLong })
@@ -51,10 +51,9 @@ export default function FilterCities() {
                 nError={onError}
                 searchOptions={{
                     types: ['(regions)'],
-
                 }}
             >
-                {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                {({ getInputProps, suggestions, loading }) => (
                     <Autocomplete
                         id="country-select-demo"
                         style={{ width: 300 }}
@@ -69,14 +68,12 @@ export default function FilterCities() {
                         getOptionLabel={(option) => option.description || ""}
                         renderOption={(option) => option?.description}
                         getOptionSelected={(option, value) => {
-                            console.log(value)
-                            getLatitudeAndLongitude(value.description)
-                            
+                            getLatitudeAndLongitude(value?.description)
                             return option.description === value.description
                         }}
-                        onChange={(event, value) => {
-                            getLatitudeAndLongitude(value?.description)
-                        }}
+                        // onChange={(event, value) => {
+                        //     getLatitudeAndLongitude(value?.description)
+                        // }}
                         inputValue={address}
                         onInputChange={(event, newInputValue) => {
                             setAddress(newInputValue);

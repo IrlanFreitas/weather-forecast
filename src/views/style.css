@@ -1,0 +1,15 @@
+.container {
+    box-sizing: border-box;
+    min-height: 95vh;
+    /* margin-top: auto; 
+    margin-bottom: auto; */
+    margin: 0;
+    background-color: azure;
+}
+
+.days {
+    display: grid;
+    width: fit-content;
+    grid-template-columns:  1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 30px;
+}
