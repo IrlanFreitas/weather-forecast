@@ -7,6 +7,7 @@ import { weather as weatherService } from '../services/api'
 import Day from '../components/Day/Day';
 
 import './style.css'
+import GraphWeather from '../components/GraphWeather';
 
 
 export default function Weather() {
@@ -33,7 +34,7 @@ export default function Weather() {
                 </Grid>
             </Grid>
             <Grid container justify="center" >
-
+                <GraphWeather />
             </Grid>
             <Grid container justify="center" className="day" >
                 {weather?.daily?.map(day =>
